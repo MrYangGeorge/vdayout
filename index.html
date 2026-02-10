@@ -233,10 +233,13 @@ html::after {
     background: white;
     padding: 25px;
     border-radius: 25px;
-    max-width: 420px;
+    max-width: 520px;
+    max-height: 85vh;
+    overflow-y: auto;
     width: 90%;
     text-align: center;
     box-shadow: 0 20px 40px rgba(255, 105, 180, 0.4);
+    position: relative;
 }
 
 .popup-content img {
@@ -283,6 +286,7 @@ html::after {
     cursor: pointer;
     line-height: 1;
     transition: transform 0.2s ease, color 0.2s ease;
+    z-index: 10;
 }
 
 .close-btn:hover {
@@ -386,8 +390,37 @@ function handleYes() {
 
     popup.classList.remove("hidden");
     img.src = "flower.jpeg";
-    text.textContent =
-        "Instead of seeing you on Feb 14, for convenience, I will see you on 13 hehehehehehehehe 💖\n\nOHHH 내 사랑스러운 여자친구";
+    text.innerHTML = `
+        <strong style="font-size: 1.4em; color: #FF1493; display: block; margin-bottom: 20px;">Valentine's Day Plan 💕</strong>
+        <div style="text-align: left; line-height: 1.9; font-size: 1.05em;">
+        <strong style="color: #ff005d;">10:00 AM</strong> - Wake up & prepare 🌅<br>
+        Head to <strong>Tasty Noodle House</strong> (same parking lot as Home Baking Day, opens at 11 AM) 🍜<br><br>
+        
+        <strong style="color: #ff005d;">12:30 PM - 3:30 PM</strong> - <strong>Home Baking Day</strong> 🎂<br>
+        Let's make a cake together!<br><br>
+        
+        <strong style="color: #ff005d;">3:30 PM - 5:00 PM</strong> - Matcha/sweet treat time ☕<br>
+        & dress change time 👗<br><br>
+        
+        <strong style="color: #ff005d;">5:30 PM</strong> - Head to Newport Beach 🌊<br>
+        Walk around the beach before dinner<br><br>
+        
+        <strong style="color: #ff005d;">6:10 PM</strong> - Walk to restaurant<br>
+        <strong style="color: #ff005d;">6:30 PM</strong> - Dinner at <strong>Bluewater Grill Newport Beach</strong> 🦞<br><br>
+        
+        <strong style="color: #ff005d;">After dinner</strong> - Walk around Newport 🌙<br><br>
+        
+        <strong style="color: #ff005d;">9:00 PM</strong> - Medicine time for my baby Honor 💊<br><br>
+        
+        <strong style="color: #ff005d;">Then...</strong> Sleep early together, together, together!      
+        <br><br>
+        <strong style="color: #ff005d;">"to" what~~ "gether" 😴💕 </strong>
+        
+        <em style="color: #FF69B4; font-size: 0.95em; display: block; margin-top: 15px;">Feel free to adjust the plan if you wish! ✨</em><br><br>
+        
+        <strong style="font-size: 1.2em; color: #FF1493;">OHHH 내 사랑스러운 여자친구 💖</strong>
+        </div>
+    `;
 
     // Stop everything here — no transition, no Yay
 }
