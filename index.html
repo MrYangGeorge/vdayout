@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+    width: 100%;
+    height: 100%;
+}
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+html::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("./background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(1.15) contrast(1.1) saturate(1.05);
+    opacity: 0.55;
+    z-index: -2;
+}
+
+html::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 229, 236, 0.6),
+        rgba(255, 201, 217, 0.6)
+    );
+    z-index: -1;
+}
+
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            z-index:1;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 182, 193, 0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #FF1493;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
+        }
+
+        .heart {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.1); }
+            20%, 40% { transform: scale(1); }
+        }
+
+        .question {
+            font-size: 1.8em;
+            color: #FF69B4;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+    padding: 20px 48px;
+    font-size: 1.35em;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+/* YES button – bold, high contrast */
+.yes-btn {
+    background: linear-gradient(135deg, #ff2f92, #ff005d);
+    color: #ffffff;
+    box-shadow:
+        0 10px 25px rgba(255, 0, 93, 0.55),
+        0 0 0 4px rgba(255, 0, 93, 0.15);
+}
+
+/* YES hover */
+.yes-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow:
+        0 18px 40px rgba(255, 0, 93, 0.75),
+        0 0 0 6px rgba(255, 0, 93, 0.25);
+}
+@keyframes glow {
+    0% { box-shadow: 0 0 0 0 rgba(255, 0, 93, 0.6); }
+    70% { box-shadow: 0 0 0 14px rgba(255, 0, 93, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 0, 93, 0); }
+}
+
+.yes-btn {
+    animation: glow 2s infinite;
+}
+
+/* NO button – still visible but softer */
+.no-btn {
+    background: #ffffff;
+    color: #ff005d;
+    border: 3px solid #ff005d;
+    box-shadow:
+        0 8px 18px rgba(255, 0, 93, 0.25);
+}
+
+.no-btn:hover {
+    background: #ffebf3;
+    transform: translateY(-3px) scale(1.02);
+}
+
+        .celebration {
+            display: none;
+        }
+
+        .celebration.show {
+            display: block;
+        }
+
+        .celebration h2 {
+            color: #FF1493;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .celebration p {
+            color: #FF69B4;
+            font-size: 1.3em;
+            line-height: 1.6;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #FF69B4;
+            position: absolute;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .no-count {
+            margin-top: 20px;
+            color: #FFB6C1;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+    .popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 182, 193, 0.45); /* lighter overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background: white;
+    padding: 25px;
+    border-radius: 25px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(255, 105, 180, 0.4);
+}
+
+.popup-content img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 18px;
+    margin-bottom: 15px;
+}
+
+.popup-content p {
+    color: #FF1493;
+    font-size: 1.15em;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+
+.popup-content img {
+    max-width: 100%;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.popup-content p {
+    color: #FF1493;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #FF69B4;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.close-btn:hover {
+    transform: scale(1.2);
+    color: #FF1493;
+}
+
+.popup-content {
+    position: relative; /* REQUIRED for close button positioning */
+}
+
+    </style>
+</head>
+
+
+
+<body>
+    <div id="popup" class="popup hidden">
+    <div class="popup-content">
+        <button class="close-btn" onclick="closePopup()">×</button>
+        <img id="popup-img" src="" alt="memory">
+        <p id="popup-text"></p>
+    </div>
+</div>
+    <div class="container">
+        <div class="content">
+            <div id="question-section">
+                <div class="heart">💕</div>
+                <h1>Valentine's Day</h1>
+                <p class="question" id="question-text">Will you go out with me on Valentine's Day?</p>
+                <div class="buttons">
+                    <button class="yes-btn" onclick="handleYes()">Yes! 💖</button>
+                    <button class="no-btn" onclick="handleNo()">No</button>
+                </div>
+                <div class="no-count" id="no-count"></div>
+            </div>
+
+            <div id="celebration" class="celebration">
+                <div class="heart">💖💕💗💓💝</div>
+                <h2>Yay! 🎉</h2>
+            </div>
+        </div>
+    </div>
+
+    <script>
+let noCount = 0;
+
+const messages = [
+    "Will you go out with me on Valentine's Day?",
+    "Are you sure? 😊",
+    "Are you really sure? 🥺",
+    "Pretty please? 💕",
+    "Come on, it'll be fun! 😄",
+    "Still no? Really? 😢"
+];
+
+const randomImages = [
+    "random1.JPG",
+    "random2.jpeg",
+    "random3.jpeg",
+    "random4.jpeg",
+    "random5.JPG"
+];
+
+function handleNo() {
+    noCount++;
+
+    document.getElementById("question-text").textContent =
+        messages[Math.min(noCount, messages.length - 1)];
+
+    document.querySelector(".yes-btn").style.transform =
+        `scale(${1 + noCount * 0.08})`;
+
+    showPopup();
+}
+
+function showPopup() {
+    const popup = document.getElementById("popup");
+    const img = document.getElementById("popup-img");
+    const text = document.getElementById("popup-text");
+
+    popup.classList.remove("hidden");
+
+    if (noCount % 4 === 0) {
+        img.src = "flower.jpeg";
+        text.textContent =
+            "I will bring you flower like this, so SIT BACK, RELAX & WAIT FOR THE SHOW!!!!! 🌸";
+    } else {
+        const pics = ["random1.JPG", "random2.jpeg", "random3.jpeg", "random4.jpeg", "random5.JPG"];
+        img.src = pics[Math.floor(Math.random() * pics.length)];
+        text.textContent =
+            "We can create more memory like this: see the fig below 💕";
+    }
+}
+
+
+function handleYes() {
+    const popup = document.getElementById("popup");
+    const img = document.getElementById("popup-img");
+    const text = document.getElementById("popup-text");
+
+    popup.classList.remove("hidden");
+    img.src = "flower.jpeg";
+    text.textContent =
+        "Instead of seeing you on Feb 14, for convenience, I will see you on 13 hehehehehehehehe 💖\n\nOHHH 내 사랑스러운 여자친구";
+
+    // Stop everything here — no transition, no Yay
+}
+
+
+
+function createConfetti() {
+    const confetti = document.createElement("div");
+    confetti.className = "confetti";
+    confetti.style.left = Math.random() * 100 + "%";
+    confetti.style.background =
+        ["#FF69B4", "#FF1493", "#FFB6C1"][Math.floor(Math.random() * 3)];
+    confetti.style.animationDuration = Math.random() * 2 + 3 + "s";
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 5000);
+}
+
+function closePopup() {
+    document.getElementById("popup").classList.add("hidden");
+}
+
+</script>
+
+</body>
+</html>
